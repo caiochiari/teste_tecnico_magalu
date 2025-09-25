@@ -11,6 +11,9 @@ x-airflow-common: &airflow-common
     AIRFLOW__LOGGING__LOGGING_LEVEL: 'INFO'
     AIRFLOW_UID: '${AIRFLOW_UID}'
     AIRFLOW_GID: '${AIRFLOW_GID}'
+    MINIO_ENDPOINT: '${MINIO_ENDPOINT}'
+    MINIO_ROOT_USER: '${MINIO_ROOT_USER}'
+    MINIO_ROOT_PASSWORD: '${MINIO_ROOT_PASSWORD}'
   volumes:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
@@ -190,7 +193,7 @@ services:
     container_name: minio_create_buckets
     depends_on:
       minio:
-        condition: service_healthy # Espera o MinIO ficar saudável
+        condition: service_healthy
     entrypoint: >
       /bin/sh -c "
       /usr/bin/mc alias set myminio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
@@ -218,7 +221,7 @@ services:
     container_name: ai_agent
     depends_on:
       postgres-application-db:
-        condition: service_healthy # Espera o banco da app ficar saudável
+        condition: service_healthy
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres-application-db:5432/${POSTGRES_DB}
     networks:
