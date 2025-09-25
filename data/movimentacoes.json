@@ -1,0 +1,75 @@
+[
+  {
+    "colaborador_id": 1,
+    "tipo_movimentacao": "Admissão",
+    "data_movimentacao": "2021-01-15",
+    "detalhes": {
+      "cargo": "Analista de Dados Jr",
+      "area": "BI"
+    }
+  },
+  {
+    "colaborador_id": 2,
+    "tipo_movimentacao": "Admissão",
+    "data_movimentacao": "2020-03-10",
+    "detalhes": {
+      "cargo": "Engenheiro de Dados Pl",
+      "area": "Engenharia"
+    }
+  },
+  {
+    "colaborador_id": 1,
+    "tipo_movimentacao": "Promoção",
+    "data_movimentacao": "2023-07-01",
+    "detalhes": {
+      "cargo_anterior": "Analista de Dados Jr",
+      "novo_cargo": "Analista de Dados Pl",
+      "area": "BI"
+    }
+  },
+  {
+    "colaborador_id": 3,
+    "tipo_movimentacao": "Admissão",
+    "data_movimentacao": "2019-11-20",
+    "detalhes": {
+      "cargo": "Cientista de Dados Sr",
+      "area": "Data Science"
+    }
+  },
+  {
+    "colaborador_id": 4,
+    "tipo_movimentacao": "Admissão",
+    "data_movimentacao": "2023-05-12",
+    "detalhes": {
+      "cargo": "Analista de People Analytics",
+      "area": "People Analytics"
+    }
+  },
+  {
+    "colaborador_id": 2,
+    "tipo_movimentacao": "Transferência",
+    "data_movimentacao": "2024-02-22",
+    "detalhes": {
+      "area_anterior": "Engenharia",
+      "nova_area": "People Analytics",
+      "cargo": "Engenheiro de Dados Pl"
+    }
+  },
+  {
+    "colaborador_id": 5,
+    "tipo_movimentacao": "Admissão",
+    "data_movimentacao": "2018-08-01",
+    "detalhes": {
+      "cargo": "Engenheiro de Dados Sr",
+      "area": "Engenharia"
+    }
+  },
+  {
+    "colaborador_id": 3,
+    "tipo_movimentacao": "Desligamento",
+    "data_movimentacao": "2024-08-19",
+    "detalhes": {
+      "motivo": "Saída voluntária"
+    }
+  }
+]
