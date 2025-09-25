@@ -1,0 +1,6 @@
+.env
+*.pdf
+notas.txt
+logs/*
+plugins/*
+data/*
