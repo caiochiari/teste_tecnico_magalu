@@ -1,18 +1,16 @@
-import os
-import sys
-import pandas as pd
-import requests
-import boto3
 from botocore.exceptions import NoCredentialsError
 from datetime import datetime
+import pandas as pd
+import requests
 import logging
+import boto3
+import sys
+import os
 
 # Configuração do logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # --- CONFIGURAÇÕES ---
-# As credenciais e o endpoint são lidos de variáveis de ambiente
-# definidas no docker-compose.yml, mas com valores padrão para flexibilidade.
 MINIO_ENDPOINT = os.getenv('MINIO_ENDPOINT')
 MINIO_ACCESS_KEY = os.getenv('MINIO_ROOT_USER')
 MINIO_SECRET_KEY = os.getenv('MINIO_ROOT_PASSWORD')
