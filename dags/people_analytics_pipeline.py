@@ -54,5 +54,21 @@ with DAG(
         """,
     )
 
+    process_silver_to_gold = SparkSubmitOperator(
+        task_id="process_silver_to_gold",
+        conn_id="spark_default",
+        application="/opt/airflow/scripts/silver_to_gold.py",
+
+        packages="org.apache.hadoop:hadoop-aws:3.3.4,org.postgresql:postgresql:42.3.1",
+        doc_md="""
+        #### Tarefa de Transformação Prata para Ouro
+        
+        Submete um job PySpark para:
+        1. Ler os dados limpos da camada Prata.
+        2. Aplicar agregações e regras de negócio (última movimentação, risco de saída).
+        3. Salvar a tabela analítica final (`fato_colaborador`) no PostgreSQL.
+        """,
+    )
+
     # Definindo a ordem de execução das tarefas
-    ingest_to_bronze >> process_bronze_to_silver
+    ingest_to_bronze >> process_bronze_to_silver >> process_silver_to_gold

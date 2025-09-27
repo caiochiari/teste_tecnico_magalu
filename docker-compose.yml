@@ -56,6 +56,9 @@ services:
       AIRFLOW__SPARK__CONF: '{"spark.driver.host": "airflow-worker"}'
       AIRFLOW_UID: '${AIRFLOW_UID}'
       AIRFLOW_GID: '${AIRFLOW_GID}'
+      POSTGRES_APP_DB: ${POSTGRES_APP_DB}
+      POSTGRES_APP_USER: ${POSTGRES_APP_USER}
+      POSTGRES_APP_PASSWORD: ${POSTGRES_APP_PASSWORD}
 
     volumes:
       - ./dags:/opt/airflow/dags
@@ -199,6 +202,7 @@ services:
       - "5433:5432"
     volumes:
       - postgres_app_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_APP_USER} -d ${POSTGRES_APP_DB}"]
       interval: 10s
