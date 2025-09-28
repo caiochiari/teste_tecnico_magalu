@@ -124,7 +124,7 @@ services:
     command:
       - "bash"
       - "-c"
-      - "airflow db migrate && airflow users create -u ${AIRFLOW_USERNAME} -p ${AIRFLOW_PASSWORD} -r ${AIRFLOW_FIRST_NAME} -e ${AIRFLOW_EMAIL} -f admin -l ${AIRFLOW_LAST_NAME}"
+      - "airflow db migrate && airflow users create -u ${AIRFLOW_USERNAME} -p ${AIRFLOW_PASSWORD} -r admin -e ${AIRFLOW_EMAIL} -f ${AIRFLOW_FIRST_NAME} -l ${AIRFLOW_LAST_NAME}"
     user: "0"
     depends_on:
       postgres-airflow-db:
