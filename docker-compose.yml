@@ -56,6 +56,14 @@ services:
       AIRFLOW__SPARK__CONF: '{"spark.driver.host": "airflow-worker"}'
       AIRFLOW_UID: '${AIRFLOW_UID}'
       AIRFLOW_GID: '${AIRFLOW_GID}'
+      POSTGRES_APP_DB: ${POSTGRES_APP_DB}
+      POSTGRES_APP_USER: ${POSTGRES_APP_USER}
+      POSTGRES_APP_PASSWORD: ${POSTGRES_APP_PASSWORD}
+      POSTGRES_APP_HOST: ${POSTGRES_APP_HOST}
+      POSTGRES_APP_PORT: ${POSTGRES_APP_PORT}
+      MINIO_BUCKET: ${MINIO_BUCKET}
+      API_URL: ${API_URL}
+      CSV_PATH: ${CSV_PATH}
 
     volumes:
       - ./dags:/opt/airflow/dags
@@ -199,6 +207,7 @@ services:
       - "5433:5432"
     volumes:
       - postgres_app_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_APP_USER} -d ${POSTGRES_APP_DB}"]
       interval: 10s
@@ -222,13 +231,14 @@ services:
     build:
       context: ./ai_agent
     container_name: ai_agent
+    ports:
+      - "8501:8501"
     depends_on:
       postgres-application-db:
         condition: service_healthy
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_APP_USER}:${POSTGRES_APP_PASSWORD}@postgres-application-db:5432/${POSTGRES_APP_DB}
-    stdin_open: true
-    tty: true
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
     networks:
       - data-network
 

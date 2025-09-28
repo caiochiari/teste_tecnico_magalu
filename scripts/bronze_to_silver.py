@@ -9,11 +9,13 @@ import os
 MINIO_ENDPOINT = os.getenv('MINIO_ENDPOINT')
 MINIO_ACCESS_KEY = os.getenv('MINIO_ROOT_USER')
 MINIO_SECRET_KEY = os.getenv('MINIO_ROOT_PASSWORD')
-MINIO_BUCKET = 'people-analytics'
+MINIO_BUCKET = os.getenv('MINIO_BUCKET')
 SPARK_MASTER_URL = os.getenv('SPARK_MASTER_URL', 'local[*]')
 
 def create_spark_session():
-    """Cria e configura uma sessão Spark para interagir com o MinIO."""
+    """
+    Cria e configura uma sessão Spark para interagir com o MinIO.
+    """
     logging.info("Criando a sessão Spark.")
     try:
         spark = (
@@ -34,14 +36,22 @@ def create_spark_session():
         sys.exit(1)
 
 def process_colaboradores(spark, execution_date):
-    """Processa os dados de colaboradores da camada Bronze para a Prata."""
+    """
+    Processa os dados de colaboradores da camada Bronze para a Prata.
+    """
     logging.info(f"Processando dados de colaboradores para a data: {execution_date}")
     try:
         bronze_path = f"s3a://{MINIO_BUCKET}/bronze/colaboradores/dt_ingestao={execution_date}/"
         df_bronze = spark.read.parquet(bronze_path)
 
-        df_silver = (
+        df_cleaned = (
             df_bronze
+            .dropna(subset=["id", "nome"])
+            .fillna({"cargo": "Não Informado", "area": "Não Informada"})
+        )
+
+        df_silver = (
+            df_cleaned
             .withColumn("id", col("id").cast(IntegerType()))
             .withColumn("idade", col("idade").cast(IntegerType()))
             .withColumn("nome", trim(col("nome")))
@@ -60,14 +70,18 @@ def process_colaboradores(spark, execution_date):
         raise
 
 def process_movimentacoes(spark, execution_date):
-    """Processa os dados de movimentações da camada Bronze para a Prata."""
+    """
+    Processa os dados de movimentações da camada Bronze para a Prata.
+    """
     logging.info(f"Processando dados de movimentações para a data: {execution_date}")
     try:
         bronze_path = f"s3a://{MINIO_BUCKET}/bronze/movimentacoes/dt_ingestao={execution_date}/"
         df_bronze = spark.read.parquet(bronze_path)
 
+        df_cleaned = df_bronze.dropna(subset=["colaborador_id", "data_movimentacao"])
+
         df_silver = (
-            df_bronze
+            df_cleaned
             .withColumn("id", col("colaborador_id").cast(IntegerType()))
             .withColumnRenamed("colaborador_id", "id_antigo")
             .withColumn("data_movimentacao", to_date(col("data_movimentacao"), "yyyy-MM-dd"))
@@ -83,7 +97,7 @@ def process_movimentacoes(spark, execution_date):
         logging.error(f"Erro ao processar dados de movimentações: {e}")
         raise
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         logging.error("Erro: Data de execução não fornecida.")
         sys.exit(1)
@@ -96,3 +110,6 @@ if __name__ == "__main__":
     
     spark_session.stop()
     logging.info("Processo Bronze para Prata concluído com sucesso.")
+
+if __name__ == "__main__":
+    main()
