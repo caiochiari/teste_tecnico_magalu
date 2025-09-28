@@ -14,10 +14,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 MINIO_ENDPOINT = os.getenv('MINIO_ENDPOINT')
 MINIO_ACCESS_KEY = os.getenv('MINIO_ROOT_USER')
 MINIO_SECRET_KEY = os.getenv('MINIO_ROOT_PASSWORD')
-MINIO_BUCKET = 'people-analytics'
+MINIO_BUCKET = os.getenv('MINIO_BUCKET')
 
-API_URL = 'http://fake-api:5000/movimentacoes'
-CSV_PATH = '/opt/airflow/data/colaboradores.csv'
+API_URL = os.getenv('API_URL')
+CSV_PATH = os.getenv('CSV_PATH')
 
 def get_s3_client():
     """Cria e retorna um cliente S3 configurado para o MinIO."""
@@ -53,7 +53,6 @@ def ingest_api_data(s3_client, dt_ingestao):
         # Converte o DataFrame para Parquet em memória
         parquet_buffer = df.to_parquet(index=False, engine='pyarrow')
 
-        # Define o caminho do objeto no MinIO (camada Bronze)
         object_name = f'bronze/movimentacoes/dt_ingestao={dt_ingestao}/movimentacoes.parquet'
         
         logging.info(f"Enviando dados de movimentações para o MinIO: {object_name}")
@@ -96,7 +95,7 @@ def ingest_csv_data(s3_client, dt_ingestao):
         logging.error(f"Erro inesperado na ingestão de dados do CSV: {e}")
         sys.exit(1)
 
-if __name__ == "__main__":
+def main():
     # O Airflow passará a data de execução como o primeiro argumento
     if len(sys.argv) > 1:
         execution_date_str = sys.argv[1]
@@ -112,3 +111,6 @@ if __name__ == "__main__":
     ingest_csv_data(s3, dt_ingestao)
     
     logging.info("Processo de ingestão para a camada Bronze concluído.")
+
+if __name__ == "__main__":
+    main()
