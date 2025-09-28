@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Comando para executar o script do agente quando o contêiner iniciar
-CMD ["python", "agent.py"]
+CMD ["streamlit", "run", "agent.py", "--server.port=8501", "--server.address=0.0.0.0"]

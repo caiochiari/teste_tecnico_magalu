@@ -1,0 +1,48 @@
+id,nome,idade,cargo,data_de_admissao,area
+1,Ana Silva,30,Engenheiro de Dados Pleno,2022-01-15,Tecnologia
+2,Bruno Costa,28,Analista de Dados,2022-03-20,Marketing
+3,Carla Dias,35,Cientista de Dados,2021-07-10,Tecnologia
+4,Daniel Farias,32,Engenheiro de Software,2023-05-01,Tecnologia
+5,Eduarda Lima,25,Designer UX,2023-08-22,Produto
+6,Fabio Martins,40,Gerente de Projetos,,Projetos
+7,Gabriela Nogueira,29,,Marketing
+8,Lucas Martins,33,Analista Financeiro,2022-11-05,Financeiro
+9,Hugo Pereira,27,Engenheiro de Dados Jr,2024-02-18,Tecnologia
+10,Isabela Rocha,31,Product Manager,2022-06-12,Produto
+11,Joao Almeida,45,Arquiteto de Cloud,2020-11-30,Tecnologia
+12,Larissa Mendes,26,Analista de RH,2023-09-01,Recursos Humanos
+13,Marcos Oliveira,38,Especialista em SEO,2021-02-20,Marketing
+14,Natalia Souza,29,Scrum Master,2022-08-15,Projetos
+15,Otavio Ferreira,34,Engenheiro de Dados Senior,2021-04-10,Tecnologia
+16,Patricia Ribeiro,39,Contadora,2020-09-05,Financeiro
+17,Rafael Barbosa,24,Desenvolvedor Full-Stack,2024-01-20,Tecnologia
+18,Sofia Azevedo,28,Recrutadora,2023-03-18,Recursos Humanos
+19,Thiago Barros,36,Gerente de Marketing,2021-10-01,Marketing
+20,Vanessa Castro,30,Product Owner,2022-05-25,Produto
+21,Arthur Moreira,25,Analista de BI,2023-11-10,Tecnologia
+22,Beatriz Carvalho,33,Business Partner,2021-12-01,Recursos Humanos
+23,Caio Ribeiro,29,Engenheiro de DevOps,2022-10-22,Tecnologia
+24,Debora Cunha,31,Designer Grafico,2022-02-14,Marketing
+25,Erick Gomes,26,Analista de Sistemas,2024-03-01,Tecnologia
+26,Fernanda Lima,37,Coordenadora Financeira,2020-07-20,Financeiro
+27,Gustavo Pinto,32,Engenheiro de Dados Pleno,2022-04-18,Tecnologia
+28,Helena Santos,28,Especialista em Midias Sociais,2023-01-30,Marketing
+29,Igor Nascimento,25,Desenvolvedor Backend,2024-04-05,Tecnologia
+30,Juliana Correia,34,Cientista de Dados Senior,2020-10-15,Tecnologia
+31,Kleber Justino,41,Gerente de TI,2019-08-12,Tecnologia
+32,Livia Andrade,27,Designer de Produto,2023-07-22,Produto
+33,Miguel Vieira,30,Analista de Marketing Digital,2022-09-03,Marketing
+34,Nicole Esteves,26,Analista de Testes (QA),2023-10-01,Tecnologia
+35,Oscar Schmidt,42,Lider Tecnico,2020-03-15,Tecnologia
+36,Paula Arruda,35,Gerente de Produto,2021-06-20,Produto
+37,Quintino Abreu,28,Engenheiro de Dados Jr,2023-12-11,Tecnologia
+38,Renata Vasconcelos,33,Analista de Negocios,2021-11-19,Produto
+39,Sergio Sampaio,39,Arquiteto de Solucoes,2019-11-25,Tecnologia
+40,Tais Araujo,29,Analista de Comunicacao,2022-11-28,Marketing
+41,Ulisses Guimaraes,44,Coordenador de Projetos,2020-02-17,Projetos
+42,Vitoria Regia,26,Desenvolvedora Frontend,,Tecnologia
+43,Wesley Safadao,31,Engenheiro de Machine Learning,2022-07-18,Tecnologia
+44,Xuxa Meneghel,52,Head de Marketing,2019-05-10,Marketing
+45,Yuri Gagarin,24,Cientista de Dados Jr,2024-05-01,Tecnologia
+46,Zelia Duncan,48,Gerente de RH,2020-01-20,Recursos Humanos
+47,Adriano Imperador,36,Engenheiro de Dados Pleno,2021-08-14,Tecnologia
