@@ -1,5 +1,5 @@
-langchain
-langchain-google-genai
+google-adk
+google-generativeai
+sqlalchemy
 psycopg2-binary
-SQLAlchemy
-python-dotenv
+streamlit
