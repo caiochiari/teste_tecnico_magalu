@@ -3,3 +3,5 @@ google-generativeai
 sqlalchemy
 psycopg2-binary
 streamlit
+python-multipart
+google-cloud-aiplatform
